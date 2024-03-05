@@ -1,30 +1,59 @@
 import React, { useState } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 const SignUp = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
+    // react toast for success 
+    const success = () => toast.success("Signup Successfully completed", {
+        position: "top-center",
+        pauseOnHover: true,
+        theme: "light",
+        autoClose: 1500,
+    }
+    );
+    // react toast for error 
+    const error = () => toast.error("Some Error Occured", {
+        position: "top-center",
+        pauseOnHover: true,
+        theme: "light",
+        autoClose: 1500,
+    }
+    );
 
     // function to handle the submitted data of form 
     const submitHandler = async (event) => {
         event.preventDefault();
-        // console.log(name, email, password);
         try {
-            await axios.post("http://localhost:4000/api/user/signup");
-        } catch (error) {
-            console.log(error);
+            await axios.post("http://localhost:4000/api/user/signup", { name, email, password });
+            setName("");
+            setEmail("");
+            setPassword("");
+            success();
+            setTimeout(() => {
+                navigate("/login");
+            }, 2000);
+
+        } catch (err) {
+            console.log(err);
+            error();
         }
-        setName("");
-        setEmail("");
-        setPassword("");
+
     }
 
     return (
         <>
+            <ToastContainer
+                position="top-center"
+            />
             <Navbar />
 
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-20 lg:px-8">

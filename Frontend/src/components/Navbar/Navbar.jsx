@@ -6,9 +6,6 @@ const Navbar = () => {
 
     // global states 
     const isLogin = useSelector(state => state.isLogin);
-
-
-
     // local states 
 
 

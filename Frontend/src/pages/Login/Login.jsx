@@ -1,21 +1,59 @@
 import React, { useState } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../Redux/Store';
+
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const submitHandler = (e) => {
-        e.preventDefault();
-        console.log(email, password);
-        setEmail("");
-        setPassword("");
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    // react toast for success 
+    const success = () => toast.success("Login Successfully completed", {
+        position: "top-center",
+        pauseOnHover: true,
+        theme: "light",
+        autoClose: 1500,
     }
+    );
+    // react toast for error 
+    const error = () => toast.error("Some Error Occured", {
+        position: "top-center",
+        pauseOnHover: true,
+        theme: "light",
+        autoClose: 1500,
+    }
+    );
 
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post("http://localhost:4000/api/user/login", { email, password });
+            setEmail("");
+            setPassword("");
+            success();
+            dispatch(authActions.login());
+            setTimeout(() => {
+                navigate("/");
+            }, 2000);
+        } catch (err) {
+            console.log(err);
+            error();
+        }
+    }
 
     return (
         <>
+            <ToastContainer
+                position="top-center"
+            />
             <Navbar />
 
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-20 lg:px-8">
