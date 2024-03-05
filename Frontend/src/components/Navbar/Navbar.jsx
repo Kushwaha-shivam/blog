@@ -1,12 +1,26 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { authActions } from '../../Redux/Store';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
 
     // global states 
     const isLogin = useSelector(state => state.isLogin);
-    // local states 
+
+    const dispacth = useDispatch();
+    const navigate = useNavigate();
+
+    // handling logout functionality 
+    const handleLogOut = () => {
+        try {
+            dispacth(authActions.logout());
+            navigate("/login");
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 
     return (
@@ -42,13 +56,12 @@ const Navbar = () => {
                             <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Signup</button>
                         </Link>}
 
-                        {isLogin && <Link to="/signup">
-                            <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Logout</button>
-                        </Link>}
+                        {isLogin &&
+                            <button onClick={handleLogOut} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">Logout</button>}
 
                     </div>
                 </div>
-            </nav>
+            </nav >
 
         </>
 
