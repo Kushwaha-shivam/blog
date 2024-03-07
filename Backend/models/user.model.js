@@ -13,9 +13,17 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    blogs: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: "Blog", 
+        }
+    ]
 
 }, { timestamps: true })
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
+
+

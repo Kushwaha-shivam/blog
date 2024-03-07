@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../Redux/Store';
@@ -41,7 +41,7 @@ const Login = () => {
             success();
             dispatch(authActions.login());
             setTimeout(() => {
-                navigate("/");
+                navigate("/all-blogs");
             }, 2000);
         } catch (err) {
             console.log(err);
@@ -59,9 +59,9 @@ const Login = () => {
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-20 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
-                        className="mx-auto h-10 w-auto"
-                        src="https://flowbite.com/docs/images/logo.svg"
-                        alt="Your Company"
+                        className="mx-auto h-10 w-auto rounded-full"
+                        src="/codespaceLogo.png"
+                        alt="CodeSpace"
                     />
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                         Sign in to your account
@@ -84,7 +84,7 @@ const Login = () => {
                                     autoComplete="email"
                                     required
                                     className="block w-full rounded-md border-0 py-1.5
-                                    pl-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    pl-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -105,12 +105,12 @@ const Login = () => {
                                     autoComplete="current-password"
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 
-                                    pl-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    pl-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
 
                             <div className="text-sm mt-3">
-                                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                <a href="#" className="font-semibold text-purple-600 hover:text-purple-700">
                                     Forgot password?
                                 </a>
                             </div>
@@ -119,7 +119,7 @@ const Login = () => {
                         <div>
                             <button
                                 type="submit"
-                                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm bg-purple-600 hover:bg-purple-700 "
                             >
                                 Sign in
                             </button>
@@ -128,9 +128,9 @@ const Login = () => {
 
                     <p className="mt-10 text-center text-sm text-gray-500">
                         Not a member?{' '}
-                        <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                        <Link to="/signup" className="font-semibold leading-6 text-purple-600 hover:text-purple-700">
                             Signup to new account
-                        </a>
+                        </Link>
                     </p>
                 </div>
             </div>
