@@ -20,18 +20,14 @@ const getAllBlogs = async (req, res) => {
 // create a blog 
 const addBlog = async (req, res) => {
     try {
-        const { title, image, description, user } = req.body;
+        const { title, image, description } = req.body;
         // checks that user provides all the details required 
-        if (!(title && image && description && user)) {
+        if (!(title && image && description)) {
             return res.status(401).json({ success: false, message: "provide all fields" })
         }
-        // checks that user exist or not 
-        const existingUser = await User.findById(user);
-        if (!existingUser) {
-            return res.status(401).json({ success: false, message: "user does not exist" });
-        }
 
-        const addedBlog = await Blog.create({ title, image, description, user });
+        const addedBlog = new Blog({ title, image, description });
+        await addedBlog.save();
         res.status(200).json({ success: true, message: "blog added", addedBlog });
 
     } catch (error) {
