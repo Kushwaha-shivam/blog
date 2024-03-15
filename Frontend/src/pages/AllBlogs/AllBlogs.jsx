@@ -50,7 +50,7 @@ const AllBlogs = () => {
                 <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
                     {
                         blogs && blogs.map((item) => (
-                            <BlogCard key={item._id} title={item.title} description={item.description} imageUrl={item.image} />
+                            <BlogCard key={item._id} title={item.title} description={item.description} imageUrl={item.image} id={item._id} />
                         ))
                     }
                 </div>

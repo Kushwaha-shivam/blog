@@ -17,7 +17,7 @@ const SignUp = () => {
         position: "top-center",
         pauseOnHover: true,
         theme: "light",
-        autoClose: 1500,
+        autoClose: 1000,
     }
     );
     // react toast for error 
@@ -25,7 +25,7 @@ const SignUp = () => {
         position: "top-center",
         pauseOnHover: true,
         theme: "light",
-        autoClose: 1500,
+        autoClose: 1000,
     }
     );
 
@@ -40,7 +40,7 @@ const SignUp = () => {
             success();
             setTimeout(() => {
                 navigate("/login");
-            }, 2000);
+            }, 1000);
 
         } catch (err) {
             console.log(err);

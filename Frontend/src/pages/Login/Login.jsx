@@ -19,7 +19,7 @@ const Login = () => {
         position: "top-center",
         pauseOnHover: true,
         theme: "light",
-        autoClose: 1500,
+        autoClose: 1000,
     }
     );
     // react toast for error 
@@ -27,7 +27,7 @@ const Login = () => {
         position: "top-center",
         pauseOnHover: true,
         theme: "light",
-        autoClose: 1500,
+        autoClose: 1000,
     }
     );
 
@@ -41,8 +41,8 @@ const Login = () => {
             success();
             dispatch(authActions.login());
             setTimeout(() => {
-                navigate("/all-blogs");
-            }, 2000);
+                navigate("/");
+            }, 1000);
         } catch (err) {
             console.log(err);
             error();

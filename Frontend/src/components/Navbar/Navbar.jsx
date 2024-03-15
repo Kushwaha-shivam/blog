@@ -32,20 +32,20 @@ const Navbar = () => {
                         <span className="self-center text-3xl font-semibold whitespace-nowrap text-purple-700">CodeSpace</span>
                     </Link>
 
-                    <div className="items-center justify-between hidden w-full md:flex md:w-auto" id="navbar-sticky">
+                    {/* <div className="items-center justify-between hidden w-full md:flex md:w-auto" id="navbar-sticky">
                         <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                             <li>
-                                {isLogin && <NavLink to="/all-blogs" className={({ isActive }) =>
+                                {isLogin && <NavLink to="/" className={({ isActive }) =>
                                     `block py-2 px-3  rounded md:bg-transparent md:p-0 ${isActive ? "text-purple-600" : "text-gray-900"}`
-                                } >Blogs</NavLink>}
+                                } >Home</NavLink>}
                             </li>
                             <li>
                                 {isLogin && <NavLink to="/my-blogs" className={({ isActive }) =>
                                     `block py-2 px-3 rounded md:hover:bg-transparent md:p-0 ${isActive ? "text-purple-600" : "text-gray-900"}`
-                                }>My Blogs</NavLink>}
+                                }>BlogPost</NavLink>}
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
 
                     <div className="flex space-x-3 ">
                         {!isLogin && <Link to="/login">

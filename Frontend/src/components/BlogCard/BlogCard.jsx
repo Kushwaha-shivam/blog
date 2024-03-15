@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const BlogCard = ({ title, description, imageUrl }) => {
+const BlogCard = ({ title, description, imageUrl, id }) => {
     const slicedTitle = title.slice(0, 50)
     const slicedDesc = description.slice(0, 150) + "..Read More"
     return (
         <div className="m-auto overflow-hidden rounded-md shadow-lg cursor-pointer h-90 w-60 md:w-80">
-            <a href="#" className="block w-full h-full">
+            <Link to={`/blogpost/${id}`} className="block w-full h-full">
                 <img alt="blog photo" src={imageUrl} className="object-cover w-full max-h-40" />
                 <div className="w-full p-4 bg-white dark:bg-gray-800">
                     <p className="mb-2 text-xl font-medium text-gray-800 dark:text-white">
@@ -28,8 +29,8 @@ const BlogCard = ({ title, description, imageUrl }) => {
                         </div>
                     </div>
                 </div>
-            </a>
-        </div>
+            </Link>
+        </div >
     )
 }
 
