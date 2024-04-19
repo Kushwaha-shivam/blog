@@ -9,6 +9,8 @@ import axios from 'axios'
 const BlogPost = () => {
     const { id } = useParams()
     const [blog, setBlog] = useState({})
+    let description = blog.description
+
     const getBlog = async (id) => {
         try {
             let { data } = await axios.post("http://localhost:4000/api/blog/all_blogs");
@@ -47,9 +49,8 @@ const BlogPost = () => {
                     className="w-full h-96 mb-16"
                 />
 
-                <p className="text-gray-800">
-                    {blog.description}
-                </p>
+                <div className='text-gray-800' dangerouslySetInnerHTML={{ __html: description }} />
+
             </div>
             <Footer />
         </>

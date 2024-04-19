@@ -1,8 +1,10 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useState, useRef, useMemo } from 'react';
+import JoditEditor from 'jodit-react';
 
 
 const CreateBlogPost = () => {
+    const editor = useRef(null)
     // states 
     const [title, setTitle] = useState("")
     const [image, setImage] = useState("")
@@ -13,20 +15,23 @@ const CreateBlogPost = () => {
         try {
             // Handle form submission, || send data to backend
             await axios.post("http://localhost:4000/api/blog/add_blog", { title, image, description })
+            setTitle("")
+            setImage("")
+            setDescription("")
         } catch (error) {
             console.log(error)
         }
     }
 
     return (
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-20 lg:px-8">
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="flex min-h-full w-[100vw] flex-1 flex-col justify-center px-6 py-20 ">
+            <div className="mx-auto w-full ">
                 <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                     Create A Blog Post
                 </h2>
             </div>
 
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="mt-10 mx-auto w-full max-w-sm">
                 <form className="space-y-6" onSubmit={submitHandler}>
                     <div>
                         <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
@@ -64,21 +69,11 @@ const CreateBlogPost = () => {
                             pl-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6"
                             />
                         </div>
-
-                        <div className="mt-8">
-                            <label htmlFor="description" className="block text-gray-900 font-semibold mb-2">description</label>
-                            <textarea
-                                id="description"
-                                name="description"
-                                onChange={(e) => setDescription(e.target.value)}
-                                value={description}
-                                required
-                                className="w-full px-3 py-2  ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600"
-                            />
-                        </div>
-
                     </div>
 
+                    <JoditEditor ref={editor} value={description} onChange={(newcontent) => setDescription(newcontent)} />
+
+                    <div dangerouslySetInnerHTML={{ __html: description }} />
                     <div>
                         <button
                             type="submit"
