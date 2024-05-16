@@ -71,9 +71,18 @@ const CreateBlogPost = () => {
                         </div>
                     </div>
 
-                    <JoditEditor ref={editor} value={description} onChange={(newcontent) => setDescription(newcontent)} />
+                    <JoditEditor
+                        ref={editor}
+                        value={description}
+                        config={{
+                            enter: 'p', // Use <p> tags for line breaks
+                        }}
+                        onChange={(newcontent) => setDescription(newcontent)}
 
-                    <div dangerouslySetInnerHTML={{ __html: description }} />
+                    />
+
+                    {/* <div dangerouslySetInnerHTML={{ __html: description }} /> */}
+                    <div>{description}</div>
                     <div>
                         <button
                             type="submit"
@@ -86,8 +95,8 @@ const CreateBlogPost = () => {
                 </form>
             </div>
         </div>
-
     )
 }
+
 
 export default CreateBlogPost
