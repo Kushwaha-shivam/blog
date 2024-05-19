@@ -10,7 +10,10 @@ const cors = require('cors');
 
 const app = express();
 app.use(express.json())
-app.use(cors());
+app.use(cors({
+    origin: "https://blog-six-omega-91.vercel.app/",
+    credentials: true
+}));
 app.use("/api/user", userRouter);
 app.use("/api/blog", blogRouter);
 app.listen(port, () => {
