@@ -9,6 +9,7 @@ const getMessage = (req, res) => {
 
 // fetch all blogs 
 const getAllBlogs = async (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
     try {
         const allBlogs = await Blog.find();
         res.status(200).json({ success: true, allBlogs });
