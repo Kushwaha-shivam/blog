@@ -13,7 +13,7 @@ const BlogPost = () => {
 
     const getBlog = async (id) => {
         try {
-            let { data } = await axios.post("http://localhost:4000/api/blog/all_blogs");
+            let { data } = await axios.post("https://blog-backend-1m64.onrender.com/api/blog/all_blogs");
             let blogArr = data.allBlogs
             blogArr.map((post) => {
                 if (post._id == id) {
