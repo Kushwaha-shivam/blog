@@ -11,7 +11,7 @@ const AllBlogs = () => {
     //function for retreiving the all blogs 
     const getAllBlog = async () => {
         try {
-            let { data } = await axios.post("https://blog-backend-1m64.onrender.com/blog/all_blogs");
+            let { data } = await axios.post("https://blog-backend-1m64.onrender.com/api/blog/all_blogs");
             if (data) {
                 setBlogs(data.allBlogs);
             }
