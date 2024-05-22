@@ -81,8 +81,8 @@ const CreateBlogPost = () => {
 
                     />
 
-                    {/* <div dangerouslySetInnerHTML={{ __html: description }} /> */}
-                    <div>{description}</div>
+                    <div dangerouslySetInnerHTML={{ __html: description }} />
+                    {/* <div>{description}</div> */}
                     <div>
                         <button
                             type="submit"
