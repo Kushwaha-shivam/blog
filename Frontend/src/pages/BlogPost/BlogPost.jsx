@@ -33,7 +33,7 @@ const BlogPost = () => {
         <>
             <Navbar />
 
-            <div div className="max-w-[60%] mx-auto my-8 p-6 bg-white rounded-md shadow-md">
+            <div div className="max-w-[60%] sm:w-[90%] mx-auto my-8 p-6 bg-white rounded-md shadow-md">
                 <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
                 <div className="flex items-center mb-4">
                     <img
